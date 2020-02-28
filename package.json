@@ -1,0 +1,33 @@
+{
+  "name": "cpf-cnpj",
+  "version": "1.0.0",
+  "description": "CPF/CNPJ validator and formatter for NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/julioakira/cpf-cnpj.git"
+  },
+  "keywords": [
+    "cpf",
+    "cnpj",
+    "validator",
+    "formatter"
+  ],
+  "author": "Julio Akira <julio.akira.pedroso@gmail.com> (http://github.com/julioakira)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/julioakira/cpf-cnpj/issues"
+  },
+  "homepage": "https://github.com/julioakira/cpf-cnpj#readme",
+  "devDependencies": {
+    "ts-node-dev": "1.0.0-pre.44",
+    "@typescript-eslint/eslint-plugin": "2.21.0",
+    "@typescript-eslint/parser": "2.21.0",
+    "eslint": "6.8.0",
+    "typescript": "3.8.2"
+  },
+  "dependencies": {}
+}
