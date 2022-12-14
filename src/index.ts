@@ -1,4 +1,4 @@
-import cpf from './cpf'
-import cnpj from './cnpj'
+import CPF from './cpf'
+import CNPJ from './cnpj'
 
-export { cpf, cnpj }
+export { CPF, CNPJ }
