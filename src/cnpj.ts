@@ -11,8 +11,8 @@ const INVALID: Array<string> = [
 	'99999999999999'
 ]
 
-const Strip = (document: string): string => document
-	? document.trim().replace(/\D/g, '')
+const Strip = (cnpj: string): string => cnpj
+	? cnpj.trim().replace(/\D/g, '')
 	: ''
 
 const Format = (cnpj: string): string =>

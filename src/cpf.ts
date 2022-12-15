@@ -12,8 +12,8 @@ const INVALID: Array<string> = [
   '12345678909',
 ]
 
-const Strip = (document: string): string => document
-  ? document.trim().replace(/\D/g, '')
+const Strip = (cpf: string): string => cpf
+  ? cpf.trim().replace(/\D/g, '')
   : ''
 
 const Format = (cpf: string): string =>

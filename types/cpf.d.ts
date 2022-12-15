@@ -1,5 +1,5 @@
 declare const _types: {
-  Strip: (document: string) => string,
+  Strip: (cpf: string) => string,
   Format: (cpf: string) => string,
   Validate: (cpf: string) => boolean
 }
