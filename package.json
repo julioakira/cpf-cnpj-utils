@@ -9,24 +9,26 @@
     "pretest": "npm run build",
     "test": "jest",
     "prepublishOnly": "npm run test",
-    "clean": "rimraf dist build"
+    "clean": "rimraf dist"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/julioakira/cpf-cnpj.git"
+    "url": "git+https://github.com/julioakira/cpf-cnpj-utils.git"
   },
   "keywords": [
     "cpf",
     "cnpj",
     "validator",
-    "formatter"
+    "formatter",
+    "generator",
+    "utils"
   ],
   "author": "Julio Akira <julio.akira.pedroso@gmail.com> (http://github.com/julioakira)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/julioakira/cpf-cnpj/issues"
+    "url": "https://github.com/julioakira/cpf-cnpj-utils/issues"
   },
-  "homepage": "https://github.com/julioakira/cpf-cnpj#readme",
+  "homepage": "https://github.com/julioakira/cpf-cnpj-utils#readme",
   "devDependencies": {
     "@types/jest": "^29.2.4",
     "@types/node": "^18.11.15",

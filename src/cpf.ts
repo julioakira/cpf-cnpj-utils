@@ -46,6 +46,35 @@ const ValidateDigit = (cpf: string, offset: number = 0): boolean => {
     : lastDigits[0 + offset] === modulus
 }
 
+const GenerateBase = (): string => {
+  let cpf: string = ''
+  for (let i = 0; i < 9; i++) {
+    cpf += Math.floor(Math.random() * 9)
+  }
+  return cpf
+}
+
+const GenerateVerifierDigit = (base: string, offset: number = 0): string => {
+  let digit: number = 0
+  let partial: string = base + digit.toString()
+  while (!ValidateDigit(partial, offset)) {
+    partial.slice(0, 10 + offset)
+    digit++
+    partial = base + digit.toString()
+  }
+  return digit.toString()
+}
+
+const Generate = (format: boolean = false): string => {
+  let cpf: string = GenerateBase()
+  cpf += GenerateVerifierDigit(cpf)
+  cpf += GenerateVerifierDigit(cpf, 1)
+
+  return format
+    ? Format(cpf)
+    : cpf
+}
+
 const Validate = (cpf: string): boolean => {
   const clean: string = Strip(cpf)
   if (!clean ||
@@ -62,4 +91,5 @@ export default {
   Format,
   Strip,
   Validate,
+  Generate,
 }

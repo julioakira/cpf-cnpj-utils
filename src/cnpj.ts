@@ -52,7 +52,36 @@ const ValidateDigit = (cnpj: string, offset: number = 0): boolean => {
 
 	return modulus < 2
 		? lastDigits[0 + offset] === 0
-		: lastDigits[0 + offset] === 11 - modulus;
+		: lastDigits[0 + offset] === 11 - modulus
+}
+
+const GenerateBase = (): string => {
+	let cnpj: string = ''
+	for (let i = 0; i < 12; i++) {
+		cnpj += Math.floor(Math.random() * 9)
+	}
+	return cnpj
+}
+
+const GenerateVerifierDigit = (base: string, offset: number = 0): string => {
+	let digit: number = 0
+	let partial: string = base + digit.toString()
+	while (!ValidateDigit(partial, offset)) {
+		partial.slice(0, 12 + offset)
+		digit++
+		partial = base + digit.toString()
+	}
+	return digit.toString()
+}
+
+const Generate = (format: boolean = false): string => {
+	let cnpj: string = GenerateBase()
+	cnpj += GenerateVerifierDigit(cnpj)
+	cnpj += GenerateVerifierDigit(cnpj, 1)
+
+	return format
+		? Format(cnpj)
+		: cnpj
 }
 
 const Validate = (cnpj: string): boolean => {
@@ -71,4 +100,5 @@ export default {
 	Format,
 	Strip,
 	Validate,
+	Generate,
 }
