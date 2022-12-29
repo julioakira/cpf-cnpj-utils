@@ -1,6 +1,6 @@
 {
   "name": "@julioakira/cpf-cnpj-utils",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "CPF/CNPJ validator and formatter for NodeJS",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
