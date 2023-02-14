@@ -79,10 +79,9 @@ const Validate = (cpf: string): boolean => {
   let clean: string = Strip(cpf)
   if(!clean)
     return false;
-  if (clean.length === 10)
-    clean = ['0', clean].join('')
+  if (clean.length !== 11)
+    clean = clean.padStart(11, '0');
   if (!clean ||
-    clean.length !== 11 ||
     INVALID.includes(clean) ||
     !ValidateDigit(clean) ||
     !ValidateDigit(clean, 1)
