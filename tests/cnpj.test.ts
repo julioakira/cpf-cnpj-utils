@@ -46,10 +46,13 @@ describe('CNPJ', () => {
     expect(CNPJ.Validate('42274696002560')).toBeFalsy()
   })
   test('Validates Unformatted CNPJs', () => {
-    expect(CNPJ.Validate('30.306.294/0001-45')).toBeTruthy()
-    expect(CNPJ.Validate('60.701.190/0001-04')).toBeTruthy()
-    expect(CNPJ.Validate('27.860.094/0001-25')).toBeTruthy()
-    expect(CNPJ.Validate('42.274.696/0025-61')).toBeTruthy()
+    expect(CNPJ.Validate('30306294000145')).toBeTruthy()
+    expect(CNPJ.Validate('60701190000104')).toBeTruthy()
+    expect(CNPJ.Validate('27860094000125')).toBeTruthy()
+    expect(CNPJ.Validate('42274696002561')).toBeTruthy()
+    // 13 length CNPJ
+    expect(CNPJ.Validate('4307650002502')).toBeTruthy()
+
   })
 })
 

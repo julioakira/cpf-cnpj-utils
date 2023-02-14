@@ -5,7 +5,7 @@ declare const _types: {
   GenerateBase: () => string,
   GenerateVerifierDigit: (base: string, offset: number) => string,
   Generate: (format: boolean) => string,
-  Validate: (cnpj: string) => boolean
+  Validate: (cnpj: string, zero_pad: boolean) => boolean
 }
 
 export default _types
