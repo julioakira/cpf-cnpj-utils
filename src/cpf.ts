@@ -76,7 +76,11 @@ const Generate = (format: boolean = false): string => {
 }
 
 const Validate = (cpf: string): boolean => {
-  const clean: string = Strip(cpf)
+  let clean: string = Strip(cpf)
+  if(!clean)
+    return false;
+  if (clean.length === 10)
+    clean = ['0', clean].join('')
   if (!clean ||
     clean.length !== 11 ||
     INVALID.includes(clean) ||

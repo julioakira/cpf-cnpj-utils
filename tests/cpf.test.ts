@@ -51,6 +51,8 @@ describe('CPF', () => {
     expect(CPF.Validate('60677272006')).toBeTruthy()
     expect(CPF.Validate('40308985052')).toBeTruthy()
     expect(CPF.Validate('08594809093')).toBeTruthy()
+    // 10 digits cpf test
+    expect(CPF.Validate('2204306240')).toBeTruthy()
   })
 })
 
