@@ -56,5 +56,11 @@ describe('CPF', () => {
     // 9 digits cpf test
     expect(CPF.Validate('426781708')).toBeTruthy()
   })
+  test('Invalidates variable length CPFs without zero padding', () => {
+    // 10 digits cpf test
+    expect(CPF.Validate('2204306240', false)).toBeFalsy()
+    // 9 digits cpf test
+    expect(CPF.Validate('426781708', false)).toBeFalsy()
+  })
 })
 

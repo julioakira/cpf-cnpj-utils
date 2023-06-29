@@ -54,5 +54,10 @@ describe('CNPJ', () => {
     expect(CNPJ.Validate('4307650002502')).toBeTruthy()
 
   })
+  test('Invalidates 13 digits CNPJs without zero padding argument', () => {
+    // 13 length CNPJ
+    expect(CNPJ.Validate('4307650002502', false)).toBeFalsy()
+
+  })
 })
 
