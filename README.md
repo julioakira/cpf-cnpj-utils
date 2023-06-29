@@ -100,6 +100,16 @@ const invalid = CNPJ.Validate('2204306240', false);
 
 ## Tests
 
-Additional notes on how to deploy this on a live or release system. Explaining the most important branches, what pipelines they trigger and how to update the database (if anything special).
+Tests are handled by Jest.
+
+- yarn
+```
+yarn test
+```
+
+- npm
+```
+npm test
+```
 
 
