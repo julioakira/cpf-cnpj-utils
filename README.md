@@ -4,8 +4,6 @@ A zero-dependency simple toolkit to deal with CPFs and CNPJs written in Typescri
 
 ### Installation
 
-A step by step guide that will tell you how to get the development environment up and running.
-
 - yarn
 ```
 yarn add @julioakira/cpf-cnpj-utils
