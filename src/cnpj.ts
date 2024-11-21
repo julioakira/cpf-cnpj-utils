@@ -86,6 +86,8 @@ const Generate = (format: boolean = false): string => {
 
 const Validate = (cnpj: string, zero_pad = true): boolean => {
 	const clean: string = zero_pad ? Strip(cnpj).padStart(14, '0') : Strip(cnpj) 
+	if (clean.length !== 14 && !zero_pad)
+		return false;
 	if (!clean ||
 		INVALID.includes(clean) ||
 		!ValidateDigit(clean) ||

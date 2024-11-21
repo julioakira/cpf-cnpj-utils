@@ -76,6 +76,8 @@ const Generate = (format: boolean = false): string => {
 
 const Validate = (cpf: string, zero_pad = true): boolean => {
   const clean: string = zero_pad ? Strip(cpf).padStart(11, '0') : Strip(cpf);
+  if (clean.length !== 11 && !zero_pad)
+    return false;
   if (
     !clean ||
     INVALID.includes(clean) ||

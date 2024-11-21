@@ -21,6 +21,7 @@ describe('CPF', () => {
     expect(CPF.Validate('77777777777')).toBeFalsy()
     expect(CPF.Validate('88888888888')).toBeFalsy()
     expect(CPF.Validate('99999999999')).toBeFalsy()
+    expect(CPF.Validate('17457482817')).toBeFalsy()
     expect(CPF.Validate('12345678909')).toBeFalsy()
   })
   test('Invalidates Weird CPF Inputs', () => {
@@ -45,6 +46,7 @@ describe('CPF', () => {
     expect(CPF.Validate('60677272026')).toBeFalsy()
     expect(CPF.Validate('40308985062')).toBeFalsy()
     expect(CPF.Validate('08594809063')).toBeFalsy()
+    expect(CPF.Validate('55140818000100', false)).toBeFalsy()
   })
   test('Validates Unformatted CPFs', () => {
     expect(CPF.Validate('00107100860')).toBeTruthy()

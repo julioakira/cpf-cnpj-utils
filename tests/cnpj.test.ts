@@ -50,6 +50,7 @@ describe('CNPJ', () => {
     expect(CNPJ.Validate('60701190000104')).toBeTruthy()
     expect(CNPJ.Validate('27860094000125')).toBeTruthy()
     expect(CNPJ.Validate('42274696002561')).toBeTruthy()
+    expect(CNPJ.Validate('55140818000100', false)).toBeTruthy()
     // 13 length CNPJ
     expect(CNPJ.Validate('4307650002502')).toBeTruthy()
 
@@ -57,6 +58,7 @@ describe('CNPJ', () => {
   test('Invalidates 13 digits CNPJs without zero padding argument', () => {
     // 13 length CNPJ
     expect(CNPJ.Validate('4307650002502', false)).toBeFalsy()
+    expect(CNPJ.Validate('1125282002160', false)).toBeFalsy()
 
   })
 })
