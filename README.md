@@ -1,6 +1,7 @@
 # cpf-cnpj-utils
 
-A zero-dependency simple toolkit to deal with CPFs and CNPJs written in Typescript.
+
+A zero-dependency simple toolkit to deal with CPFs and CNPJs written in Typescript. **Now updated to support alphanumeric CNPJs**
 
 ### Installation
 
@@ -73,25 +74,39 @@ const invalid = CPF.Validate('40308985062');
 const invalid = CPF.Validate('403.089.850-62');
 ```
 
-## Variable Length CPFs and CNPJs
+## Alphanumeric CNPJs
 
-Some CPFs and CNPJs might have variable lengths and not be zero padded up to their regular length. The `validate` function has a optional `zero_pad` argument, which is `true` by default but can be manually set to `false` if desired:
+Starting from july/2026, CNPJs might include alphanumeric characters. The validator and generator functions support them out of the box:
 
 ```js
-//  CNPJ with 13 digits returns true
+// Returns  "IH.NKO.M5D/DLZU-99" 
+const generated = CNPJ.Generate(true)
+
+// returns true
+const validated = CNPJ.Validate('IH.NKO.M5D/DLZU-99')
+```
+
+## Variable Length CPFs and CNPJs
+
+**NOTE** From versions below 2.0.0 the `zero_pad` argument is by default true. This was changed in versions above 2.0.0.
+
+Some CPFs and CNPJs that use the pattern before july/2026 might have variable lengths and not be zero padded up to their regular length. The `validate` function has a optional `zero_pad` argument, which is `false` by default but can be manually set to `true` if desired:
+
+```js
+//  CNPJ with 13 digits returns false
 const valid = CNPJ.Validate('4307650002502');
 
-// Setting auto zero padding to false invalidates and returns false
-const invalid = CNPJ.Validate('4307650002502', false);
+// Setting auto zero padding to true returns true
+const invalid = CNPJ.Validate('4307650002502', true);
 
 ```
 
 ```js
-//  CPF with 10 digits returns true
+//  CPF with 10 digits returns false
 const valid = CPF.Validate('2204306240');
 
-// Setting auto zero padding to false invalidates and returns false
-const invalid = CNPJ.Validate('2204306240', false);
+// Setting auto zero padding to true invalidates and returns true
+const invalid = CNPJ.Validate('2204306240', true);
 
 ```
 

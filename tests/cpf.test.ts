@@ -48,15 +48,15 @@ describe('CPF', () => {
     expect(CPF.Validate('08594809063')).toBeFalsy()
     expect(CPF.Validate('55140818000100', false)).toBeFalsy()
   })
-  test('Validates Unformatted CPFs', () => {
+  test('Invalidates Unformatted CPFs unless zero_pad is true', () => {
     expect(CPF.Validate('00107100860')).toBeTruthy()
     expect(CPF.Validate('60677272006')).toBeTruthy()
     expect(CPF.Validate('40308985052')).toBeTruthy()
     expect(CPF.Validate('08594809093')).toBeTruthy()
     // 10 digits cpf test
-    expect(CPF.Validate('2204306240')).toBeTruthy()
+    expect(CPF.Validate('2204306240')).toBeFalsy()
     // 9 digits cpf test
-    expect(CPF.Validate('426781708')).toBeTruthy()
+    expect(CPF.Validate('426781708', true)).toBeTruthy()
   })
   test('Invalidates variable length CPFs without zero padding', () => {
     // 10 digits cpf test

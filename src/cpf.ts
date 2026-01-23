@@ -74,7 +74,7 @@ const Generate = (format: boolean = false): string => {
   return format ? Format(cpf) : cpf;
 };
 
-const Validate = (cpf: string, zero_pad = true): boolean => {
+const Validate = (cpf: string, zero_pad = false): boolean => {
   const clean: string = zero_pad ? Strip(cpf).padStart(11, '0') : Strip(cpf);
   if (clean.length !== 11 && !zero_pad)
     return false;

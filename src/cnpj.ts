@@ -12,7 +12,7 @@ const INVALID: Array<string> = [
 ]
 
 const Strip = (cnpj: string): string => cnpj
-	? cnpj.trim().replace(/\D/g, '')
+	? cnpj.trim().replace(/[./-]/g, '')
 	: ''
 
 const Format = (cnpj: string): string =>
@@ -40,11 +40,11 @@ const ValidateDigit = (cnpj: string, offset: number = 0): boolean => {
 	const firstDigits: Array<number> = cnpj
 		.slice(0, 12 + offset)
 		.split('')
-		.map(e => Number(e))
+		.map(e => Number.isInteger(e) ? Number(e) : e.toLocaleUpperCase().charCodeAt(0) - 48)
 	const lastDigits: Array<number> = cnpj
 		.slice(12, 14)
 		.split('')
-		.map(e => Number(e))
+		.map(e => Number.isInteger(e) ? Number(e) : e.toLocaleUpperCase().charCodeAt(0) - 48)
 
 	const multiplied: number = firstDigits
 		.reduce((acc, curr, idx) => acc + curr * (factors[idx]), 0)
@@ -56,9 +56,10 @@ const ValidateDigit = (cnpj: string, offset: number = 0): boolean => {
 }
 
 const GenerateBase = (): string => {
+	const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
 	let cnpj: string = ''
 	for (let i = 0; i < 12; i++) {
-		cnpj += Math.floor(Math.random() * 9)
+		cnpj += characters.charAt(Math.floor(Math.random() * characters.length))
 	}
 	return cnpj
 }
@@ -84,7 +85,7 @@ const Generate = (format: boolean = false): string => {
 		: cnpj
 }
 
-const Validate = (cnpj: string, zero_pad = true): boolean => {
+const Validate = (cnpj: string, zero_pad = false): boolean => {
 	const clean: string = zero_pad ? Strip(cnpj).padStart(14, '0') : Strip(cnpj) 
 	if (clean.length !== 14 && !zero_pad)
 		return false;

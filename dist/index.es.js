@@ -50,7 +50,7 @@ var Generate$1 = function Generate() {
   return format ? Format$1(cpf) : cpf;
 };
 var Validate$1 = function Validate(cpf) {
-  var zero_pad = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+  var zero_pad = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
   var clean = zero_pad ? Strip$1(cpf).padStart(11, '0') : Strip$1(cpf);
   if (clean.length !== 11 && !zero_pad) return false;
   if (!clean || INVALID$1.includes(clean) || !ValidateDigit$1(clean) || !ValidateDigit$1(clean, 1)) return false;
@@ -65,7 +65,7 @@ var cpf = {
 
 var INVALID = ['00000000000000', '11111111111111', '22222222222222', '33333333333333', '44444444444444', '55555555555555', '66666666666666', '77777777777777', '88888888888888', '99999999999999'];
 var Strip = function Strip(cnpj) {
-  return cnpj ? cnpj.trim().replace(/\D/g, '') : '';
+  return cnpj ? cnpj.trim().replace(/[./-]/g, '') : '';
 };
 var Format = function Format(cnpj) {
   return [[[[cnpj.slice(0, 2), cnpj.slice(2, 5), cnpj.slice(5, 8)].filter(function (e) {
@@ -80,10 +80,10 @@ var ValidateDigit = function ValidateDigit(cnpj) {
   var offset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
   var factors = offset === 0 ? [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2] : [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
   var firstDigits = cnpj.slice(0, 12 + offset).split('').map(function (e) {
-    return Number(e);
+    return Number.isInteger(e) ? Number(e) : e.toLocaleUpperCase().charCodeAt(0) - 48;
   });
   var lastDigits = cnpj.slice(12, 14).split('').map(function (e) {
-    return Number(e);
+    return Number.isInteger(e) ? Number(e) : e.toLocaleUpperCase().charCodeAt(0) - 48;
   });
   var multiplied = firstDigits.reduce(function (acc, curr, idx) {
     return acc + curr * factors[idx];
@@ -92,9 +92,10 @@ var ValidateDigit = function ValidateDigit(cnpj) {
   return modulus < 2 ? lastDigits[0 + offset] === 0 : lastDigits[0 + offset] === 11 - modulus;
 };
 var GenerateBase = function GenerateBase() {
+  var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
   var cnpj = '';
   for (var i = 0; i < 12; i++) {
-    cnpj += Math.floor(Math.random() * 9);
+    cnpj += characters.charAt(Math.floor(Math.random() * characters.length));
   }
   return cnpj;
 };
@@ -117,7 +118,7 @@ var Generate = function Generate() {
   return format ? Format(cnpj) : cnpj;
 };
 var Validate = function Validate(cnpj) {
-  var zero_pad = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+  var zero_pad = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
   var clean = zero_pad ? Strip(cnpj).padStart(14, '0') : Strip(cnpj);
   if (clean.length !== 14 && !zero_pad) return false;
   if (!clean || INVALID.includes(clean) || !ValidateDigit(clean) || !ValidateDigit(clean, 1)) return false;

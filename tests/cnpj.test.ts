@@ -10,6 +10,12 @@ describe('CNPJ', () => {
   test('Formats the Supplied Unformatted CNPJ', () => {
     expect(CNPJ.Format('30306294000145')).toMatch('30.306.294/0001-45')
   })
+  test('Generates Valid CNPJs', () => {
+    expect(CNPJ.Validate(CNPJ.Generate())).toBeTruthy()
+    expect(CNPJ.Validate(CNPJ.Generate())).toBeTruthy()
+    expect(CNPJ.Validate(CNPJ.Generate())).toBeTruthy()
+    expect(CNPJ.Validate(CNPJ.Generate())).toBeTruthy()
+  })
   test('Returns false for Invalid CNPJs', () => {
     expect(CNPJ.Validate('00000000000000')).toBeFalsy()
     expect(CNPJ.Validate('11111111111111')).toBeFalsy()
@@ -45,15 +51,27 @@ describe('CNPJ', () => {
     expect(CNPJ.Validate('27810094000125')).toBeFalsy()
     expect(CNPJ.Validate('42274696002560')).toBeFalsy()
   })
-  test('Validates Unformatted CNPJs', () => {
+  test('Invalidates Unformatted CNPJs unless zero_pad is true', () => {
     expect(CNPJ.Validate('30306294000145')).toBeTruthy()
     expect(CNPJ.Validate('60701190000104')).toBeTruthy()
     expect(CNPJ.Validate('27860094000125')).toBeTruthy()
     expect(CNPJ.Validate('42274696002561')).toBeTruthy()
-    expect(CNPJ.Validate('55140818000100', false)).toBeTruthy()
+    expect(CNPJ.Validate('55140818000100')).toBeTruthy()
     // 13 length CNPJ
-    expect(CNPJ.Validate('4307650002502')).toBeTruthy()
+    expect(CNPJ.Validate('4307650002502', true)).toBeTruthy()
 
+  })
+  test('Validates valid Alphanumeric CNPJs', () => {
+    expect(CNPJ.Validate('HS.462.BGP/0001-21')).toBeTruthy()
+    expect(CNPJ.Validate('ZZ.0ZB.13X/0001-73')).toBeTruthy()
+    expect(CNPJ.Validate('HR.D2T.WTT/0001-41')).toBeTruthy()
+    expect(CNPJ.Validate('RN.Y1L.Z93/0001-30')).toBeTruthy()
+  })
+  test('Invalidates invalid Alphanumeric CNPJs', () => {
+    expect(CNPJ.Validate('HS.4E2.BGP/0001-21')).toBeFalsy()
+    expect(CNPJ.Validate('ZZ.0AB.13X/0001-73')).toBeFalsy()
+    expect(CNPJ.Validate('HR.DNT.WTT/0001-41')).toBeFalsy()
+    expect(CNPJ.Validate('RN.B1L.Z93/0001-30')).toBeFalsy()
   })
   test('Invalidates 13 digits CNPJs without zero padding argument', () => {
     // 13 length CNPJ
