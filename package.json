@@ -4,6 +4,13 @@
   "description": "CPF/CNPJ validator and formatter for NodeJS",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "cnpj.d.ts",
+    "cpf.d.ts",
+    "index.d.ts",
+    "index.es.js",
+    "index.js"
+  ],
   "scripts": {
     "build": "bili src/index.ts --format cjs --format es",
     "pretest": "npm run build",
