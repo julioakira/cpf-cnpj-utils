@@ -4,6 +4,10 @@ describe('CNPJ', () => {
   test('Strips the supplied CNPJ', () => {
     expect(CNPJ.Strip('30.306.294/0001-45')).toMatch('30306294000145')
   })
+  test('Strips CNPJ with spaces and other characters', () => {
+    expect(CNPJ.Strip(' 30 306 294 0001 45 ')).toMatch('30306294000145')
+    expect(CNPJ.Strip('30_306_294_0001_45')).toMatch('30306294000145')
+  })
   test('Returns an empty string for falsy strip values', () => {
     expect(CNPJ.Strip('')).toMatch('')
   })
@@ -80,4 +84,3 @@ describe('CNPJ', () => {
 
   })
 })
-

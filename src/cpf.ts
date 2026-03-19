@@ -9,7 +9,6 @@ const INVALID: Array<string> = [
   "77777777777",
   "88888888888",
   "99999999999",
-  "12345678909",
 ];
 
 const Strip = (cpf: string): string =>
