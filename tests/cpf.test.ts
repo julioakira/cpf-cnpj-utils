@@ -22,7 +22,9 @@ describe('CPF', () => {
     expect(CPF.Validate('88888888888')).toBeFalsy()
     expect(CPF.Validate('99999999999')).toBeFalsy()
     expect(CPF.Validate('17457482817')).toBeFalsy()
-    expect(CPF.Validate('12345678909')).toBeFalsy()
+  })
+  test('Validates sequential CPF 12345678909 (valid by algorithm)', () => {
+    expect(CPF.Validate('12345678909')).toBeTruthy()
   })
   test('Invalidates Weird CPF Inputs', () => {
     expect(CPF.Validate('001#7%00860')).toBeFalsy()
@@ -65,4 +67,3 @@ describe('CPF', () => {
     expect(CPF.Validate('426781708', false)).toBeFalsy()
   })
 })
-

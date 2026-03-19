@@ -12,7 +12,7 @@ const INVALID: Array<string> = [
 ]
 
 const Strip = (cnpj: string): string => cnpj
-	? cnpj.trim().replace(/[./-]/g, '')
+	? cnpj.trim().replace(/[^A-Za-z0-9]/g, '')
 	: ''
 
 const Format = (cnpj: string): string =>
@@ -32,6 +32,8 @@ const Format = (cnpj: string): string =>
 		.filter(e => e)
 		.join('-')
 
+const charToValue = (char: string): number => char.toUpperCase().charCodeAt(0) - 48
+
 const ValidateDigit = (cnpj: string, offset: number = 0): boolean => {
 	const factors: Array<number> = offset === 0
 		? [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
@@ -40,11 +42,11 @@ const ValidateDigit = (cnpj: string, offset: number = 0): boolean => {
 	const firstDigits: Array<number> = cnpj
 		.slice(0, 12 + offset)
 		.split('')
-		.map(e => Number.isInteger(e) ? Number(e) : e.toLocaleUpperCase().charCodeAt(0) - 48)
+		.map(charToValue)
 	const lastDigits: Array<number> = cnpj
 		.slice(12, 14)
 		.split('')
-		.map(e => Number.isInteger(e) ? Number(e) : e.toLocaleUpperCase().charCodeAt(0) - 48)
+		.map(charToValue)
 
 	const multiplied: number = firstDigits
 		.reduce((acc, curr, idx) => acc + curr * (factors[idx]), 0)
